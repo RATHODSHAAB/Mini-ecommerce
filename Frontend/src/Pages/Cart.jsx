@@ -6,7 +6,7 @@ export const Cart = ({addToCart, removeFromCart, totalPrice, cart}) => {
   const handlePay = async () => {
   try {
     const res = await axios.post(
-      "http://localhost:3000/api/payment/create-order",
+      "https://mini-ecommerce-2-nwer.onrender.com/api/payment/create-order",
       { amount: totalPrice }
     );
 
@@ -25,7 +25,7 @@ export const Cart = ({addToCart, removeFromCart, totalPrice, cart}) => {
       handler: async function (response) {
         // VERIFY PAYMENT HERE
         const verifyRes = await axios.post(
-          "http://localhost:3000/api/payment/verify-payment",
+          "https://mini-ecommerce-2-nwer.onrender.com/api/payment/verify-payment",
           {
             razorpay_order_id: response.razorpay_order_id,
             razorpay_payment_id: response.razorpay_payment_id,

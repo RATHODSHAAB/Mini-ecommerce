@@ -8,7 +8,20 @@ const paymentRoutes = require('./routes/paymentRoutes')
 const app = express();
 
 
-app.use(cors());
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://mini-ecommerce-tq21-qi6pfdf30-rathodshaabs-projects.vercel.app/"
+];
+
+app.use(cors({
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  }
+}));
 
 app.use(express.json());
 
